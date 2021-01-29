@@ -63,15 +63,15 @@
                     <input id="first-class-ticket" type="text" class="form-control text-center" value="0">
                 </div>
                 <div class="plus-minus-btn ">
-                    <button id="firstClassPlus" class="btn btn-default "><i class="fas fa-plus "></i></button>
-                    <button id="firstClassMinus" class="btn btn-default "><i class="fas fa-minus "></i></button>
+                    <button onclick="handleFirstClass(true)" class="btn btn-default "><i class="fas fa-plus "></i></button>
+                    <button onclick="handleFirstClass(false)" class="btn btn-default "><i class="fas fa-minus "></i></button>
                 </div>
             </div>
 
             <div class="input-group f-class ">
                 <div>
                     <label for=" ">Economy ($100)</label>
-                    <input class="inp-style inp-width " type="number " name=" " value="0">
+                    <input id="economy-class-ticket" class="inp-style inp-width " type="number " name=" " value="0">
                 </div>
                 <div class="plus-minus-btn ">
                     <button id="" class="btn btn-default "><i class="fas fa-plus "></i></button>
@@ -109,55 +109,21 @@
             <button class="btn-style ">Book Now</button>
         </div>
         <script>
-            // document.getElementById('firstClassPlus').addEventListener('click', function() {
-            //     firstClassSection(true);
-            // })
-            // document.getElementById('firstClassMinus').addEventListener('click', function() {
-            //     firstClassSection(false);
-            // })
-
-            // function firstClassSection(isIncrease) {
-            //     const firstClassTicket = document.getElementById('first-class-ticket');
-            //     const ticketAmount = parseInt(firstClassTicket.value);
-            //     if (isIncrease == true) {
-            //         const totalAmount = ticketAmount + 1;
-            //     }
-            //     if (isIncrease == false && phoneCount > 0) {
-            //         const totalAmount = ticketAmount - 1;
-            //     }
-            //     firstClassTicket.value = totalAmount;
-            //     firstClassSection();
-            // }
-
-
-
-            document.getElementById('firstClassPlus').addEventListener('click', function() {
+            // First class handler
+            function handleFirstClass(isIncrease) {
                 const firstClassTicket = document.getElementById('first-class-ticket');
-                const ticketAmount = parseInt(firstClassTicket.value);
-                const totalAmount = ticketAmount + 1;
-                firstClassTicket.value = totalAmount;
+                const ticketQuantity = parseInt(firstClassTicket.value);
+                let totalTicket = ticketQuantity;
+                if (isIncrease == true) {
+                    totalTicket = ticketQuantity + 1;
+                }
+                if (isIncrease == false && ticketQuantity > 0) {
+                    totalTicket = ticketQuantity - 1
+                }
+                firstClassTicket.value = totalTicket;
 
-            })
-            document.getElementById('firstClassMinus').addEventListener('click', function() {
-                const firstClassTicket = document.getElementById('first-class-ticket');
-                const ticketAmount = parseInt(firstClassTicket.value);
-                const totalAmount = ticketAmount - 1;
-                firstClassTicket.value = totalAmount;
-
-            })
-
-
-
-
-            // document.getElementById('case-increase').addEventListener('click', function() {
-            //     console.log('am clicked');
-            //     // const caseInput = document.getElementById('case-count');
-            //     // const caseCount = parseInt(caseInput.value);
-            //     // const caseNewCount = caseCount + 1;
-            //     // caseInput.value = caseNewCount;
-            //     // const caseTotal = caseNewCount * 59;
-            //     // document.getElementById('case-total').innerText = '$' + caseTotal;
-            // });
+            }
+            // Economy handler
         </script>
     </main>
 
