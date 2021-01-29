@@ -63,8 +63,8 @@
                     <input id="first-class-ticket" type="text" class="form-control text-center" value="0">
                 </div>
                 <div class="plus-minus-btn ">
-                    <button onclick="handleFirstClass(true)" class="btn btn-default "><i class="fas fa-plus "></i></button>
-                    <button onclick="handleFirstClass(false)" class="btn btn-default "><i class="fas fa-minus "></i></button>
+                    <button onclick="handlerFirstClass(true)" class="btn btn-default "><i class="fas fa-plus "></i></button>
+                    <button onclick="handlerFirstClass(false)" class="btn btn-default "><i class="fas fa-minus "></i></button>
                 </div>
             </div>
 
@@ -74,8 +74,8 @@
                     <input id="economy-class-ticket" class="inp-style inp-width " type="number " name=" " value="0">
                 </div>
                 <div class="plus-minus-btn ">
-                    <button id="" class="btn btn-default "><i class="fas fa-plus "></i></button>
-                    <button id="case-decrese " class="btn btn-default "><i class="fas fa-minus "></i></button>
+                    <button onclick="handlerEconomyClass(true)" class="btn btn-default "><i class="fas fa-plus "></i></button>
+                    <button onclick="handlerEconomyClass(false)" class="btn btn-default "><i class="fas fa-minus "></i></button>
                 </div>
             </div>
             <div class="calculations ">
@@ -110,7 +110,7 @@
         </div>
         <script>
             // First class handler
-            function handleFirstClass(isIncrease) {
+            function handlerFirstClass(isIncrease) {
                 const firstClassTicket = document.getElementById('first-class-ticket');
                 const ticketQuantity = parseInt(firstClassTicket.value);
                 let totalTicket = ticketQuantity;
@@ -124,6 +124,18 @@
 
             }
             // Economy handler
+            function handlerEconomyClass(isIncrease) {
+                const economyClassTicket = document.getElementById('economy-class-ticket');
+                const ticketQuantity = parseInt(economyClassTicket.value);
+                let totalTicket = ticketQuantity;
+                if (isIncrease == true) {
+                    totalTicket = ticketQuantity + 1;
+                }
+                if (isIncrease == false && ticketQuantity > 0) {
+                    totalTicket = ticketQuantity - 1;
+                }
+                economyClassTicket.value = totalTicket;
+            }
         </script>
     </main>
 
