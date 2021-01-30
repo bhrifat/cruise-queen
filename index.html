@@ -30,13 +30,25 @@
     <!--Booking Section-->
     <main class="main-content container">
 
+
         <div class="booking-content">
-            <h1>Cruise Queen</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen
-                book./p>
+            <div id="page-content">
+                <h1>Cruise Queen</h1>
+                <p>On a cruise, you unpack once and your floating hotel takes you from city to city or from island to island and there's no need to mess with train or ferry schedules, or lug your suitcase along cobblestone streets. Every morning, you'll
+                    wake up in a new place. Can't decide between St. Lucia and Barbados, or Italy or Spain? Why choose? Pick an itinerary that visits all the cities on your wish list.</p>
+            </div>
+            <div id="bookingConfirmation" class="booking-area">
+                <h1>Your order is confirmed</h1>
+                <h4>First class tickets: <span id="totalFirstClass"></span></h4>
+                <h4>Economy class tickets: <span id="totalEconomyClass"></span></h4>
+                <h4>Subtotal(Including 10% VAT): <span id="getTotal"></span> </h4><br>
+                <p style="font-weight: 900; font-size: 2em;">Have a nice journey.</p>
+
+            </div>
         </div>
 
 
+        <!-- Booking form -->
         <div class="booking-form">
             <h3>Book Ocean Time</h3>
             <div class="input-group">
@@ -57,6 +69,7 @@
                     <input class="inp-style " type="date" name=" ">
                 </div>
             </div>
+
             <div class="input-group f-class ">
                 <div>
                     <label for=" ">First Class ($150)</label>
@@ -70,7 +83,7 @@
 
             <div class="input-group f-class ">
                 <div>
-                    <label for=" ">economyClass ($100)</label>
+                    <label for=" ">Economy Class ($100)</label>
                     <input id="economyClass-count" class="inp-style inp-width" type="" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
@@ -96,7 +109,6 @@
                         <p id="tax">$0</p>
                     </div>
                 </div>
-                <hr>
                 <div class="amount ">
                     <div class="left ">
                         <h4>Total</h4>
@@ -106,8 +118,10 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style "><a href="inn.html">Book Now</a> </button>
+            <button onclick="bookingConfirmation()" id="booked" class="btn-style ">Book Now</button>
         </div>
+
+
         <script>
             // Get total ticket amount
             function bookCruiseTicket(ticket, isIncrease) {
@@ -133,12 +147,24 @@
                 document.getElementById('tax').innerText = '$' + tax;
                 const subTotal = totalFare + tax;
                 document.getElementById('total').innerText = '$' + subTotal;
+
             }
 
             function getInputValue(ticket) {
                 const ticketInput = document.getElementById(ticket + '-count').value;
                 const ticketCount = parseInt(ticketInput);
                 return ticketCount;
+            }
+
+            // Booking confirmation
+            function bookingConfirmation() {
+                const contentArea = document.getElementById("page-content");
+                contentArea.style.display = "none";
+                const bookingArea = document.getElementById("bookingConfirmation");
+                bookingArea.style.display = "block";
+                document.getElementById('totalFirstClass').textContent = getInputValue('firstClass');
+                document.getElementById('totalEconomyClass').textContent = getInputValue('economyClass');
+                document.getElementById('getTotal').textContent = document.getElementById('total').innerText;
             }
         </script>
     </main>
