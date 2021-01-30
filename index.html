@@ -60,22 +60,22 @@
             <div class="input-group f-class ">
                 <div>
                     <label for=" ">First Class ($150)</label>
-                    <input id="fclass-count" class="inp-style inp-width" type="" name="" value="0">
+                    <input id="firstClass-count" class="inp-style inp-width" type="" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <button onclick="handleTicketChange('fclass',true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
-                    <button onclick="handleTicketChange('fclass',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                    <button onclick="bookCruiseTicket('firstClass',true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                    <button onclick="bookCruiseTicket('firstClass',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                 </div>
             </div>
 
             <div class="input-group f-class ">
                 <div>
-                    <label for=" ">Economy ($100)</label>
-                    <input id="economy-count" class="inp-style inp-width" type="" name="" value="0">
+                    <label for=" ">economyClass ($100)</label>
+                    <input id="economyClass-count" class="inp-style inp-width" type="" name="" value="0">
                 </div>
                 <div class="plus-minus-btn">
-                    <button onclick="handleTicketChange('economy',true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
-                    <button onclick="handleTicketChange('economy',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
+                    <button onclick="bookCruiseTicket('economyClass',true)" class="btn btn-default"><i class="fas fa-plus"></i></button>
+                    <button onclick="bookCruiseTicket('economyClass',false)" class="btn btn-default"><i class="fas fa-minus"></i></button>
                 </div>
             </div>
             <div class="calculations ">
@@ -106,18 +106,12 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style ">Book Now</button>
+            <button class="btn-style "><a href="inn.html">Book Now</a> </button>
         </div>
         <script>
-            function getInputValue(ticket) {
-                const ticketInput = document.getElementById(ticket + '-count').value;
-                const ticketCount = parseInt(ticketInput);
-                return ticketCount;
-            }
-
-            function handleTicketChange(ticket, isIncrease) {
+            // Get total ticket amount
+            function bookCruiseTicket(ticket, isIncrease) {
                 const ticketCount = getInputValue(ticket);
-                // const  ticketNewCount = ticketCount - 1;
                 let ticketNewCount = ticketCount;
                 if (isIncrease == true) {
                     ticketNewCount = ticketCount + 1;
@@ -126,19 +120,19 @@
                     ticketNewCount = ticketCount - 1;
                 }
                 document.getElementById(ticket + '-count').value = ticketNewCount;
-                Totalfare();
+                totalFare();
             }
-
-            function Totalfare() {
-                const fclassInput = getInputValue('fclass');
-                const economyInput = getInputValue('economy');
-                const totalFare = (fclassInput * 150) + (economyInput * 100);
+            // Get Sub total
+            function totalFare() {
+                const firstClassInput = getInputValue('firstClass');
+                const economyClassInput = getInputValue('economyClass');
+                const totalFare = (firstClassInput * 150) + (economyClassInput * 100);
                 document.getElementById('sub-total').innerHTML = '$' + totalFare;
 
                 const tax = Math.round(totalFare * 0.1);
                 document.getElementById('tax').innerText = '$' + tax;
-                const grandTotal = totalFare + tax;
-                document.getElementById('total').innerText = '$' + grandTotal;
+                const subTotal = totalFare + tax;
+                document.getElementById('total').innerText = '$' + subTotal;
             }
 
             function getInputValue(ticket) {
